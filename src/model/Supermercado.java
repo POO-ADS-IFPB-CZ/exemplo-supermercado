@@ -37,6 +37,18 @@ public class Supermercado {
         return produtos;
     }
 
+    public boolean addProduto(Produto produto){
+        return this.produtos.add(produto);
+    }
+
+    public boolean removeProduto(Produto produto){
+        return this.produtos.remove(produto);
+    }
+
+    public boolean containsProduto(Produto produto){
+        return this.produtos.contains(produto);
+    }
+
     public Set<Cliente> getClientes() {
         return clientes;
     }
