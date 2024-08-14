@@ -53,6 +53,18 @@ public class Supermercado {
         return clientes;
     }
 
+    public boolean addCliente(Cliente cliente){
+        return this.clientes.add(cliente);
+    }
+
+    public boolean removeCliente(Cliente cliente){
+        return this.clientes.remove(cliente);
+    }
+
+    public boolean containsCliente(Cliente cliente){
+        return this.clientes.contains(cliente);
+    }
+
     @Override
     public String toString() {
         return "Supermercado{" +
