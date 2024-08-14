@@ -22,7 +22,10 @@ public class SupermercadoDao {
     }
 
     public Supermercado buscarPorCnpj(String cnpj){
-
+        for(Supermercado supermercado : supermercados){
+            if(supermercado.getCnpj().equals(cnpj)) return supermercado;
+        }
+        return null;
     }
 
 }
