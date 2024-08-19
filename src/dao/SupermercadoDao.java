@@ -34,7 +34,6 @@ public class SupermercadoDao {
             } catch (FileNotFoundException e) {
                 System.out.println("Arquivo não encontrado");
             } catch (IOException e) {
-                System.out.println(e);
                 System.out.println("Falha ao ler arquivo");
             } catch (ClassNotFoundException e) {
                 System.out.println("Falha ao ler arquivo");
@@ -62,16 +61,32 @@ public class SupermercadoDao {
     }
 
     public boolean deletar(Supermercado supermercado) {
-//        return supermercados.remove(supermercado);
+        Set<Supermercado> supermercados = getSupermercados();
+        if(supermercados.remove(supermercado)){
+            try{
+                FileOutputStream outputStream = new FileOutputStream(arquivo);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+                objectOutputStream.writeObject(supermercados);
+                return true;
+            } catch (FileNotFoundException e) {
+                System.out.println("Arquivo não encontrado");
+            } catch (IOException e) {
+                System.out.println("Falha ao escrever no arquivo");
+            }
+        }
         return false;
     }
 
     public Supermercado buscarPorCnpj(String cnpj){
+        Set<Supermercado> supermercados = getSupermercados();
+        for(Supermercado supermercado : supermercados){
+            if(supermercado.getCnpj().equals(cnpj)) return supermercado;
+        }
         return null;
-//        for(Supermercado supermercado : supermercados){
-//            if(supermercado.getCnpj().equals(cnpj)) return supermercado;
-//        }
-//        return null;
+    }
+
+    public boolean atualizar(Supermercado supermercado) {
+        return deletar(supermercado) && salvar(supermercado);
     }
 
 }
