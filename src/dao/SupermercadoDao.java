@@ -38,14 +38,25 @@ public class SupermercadoDao {
             } catch (ClassNotFoundException e) {
                 System.out.println("Falha ao ler arquivo");
             }
-        }else{
-            //Não há nada no arquivo, criar um novo conjunto
-            return new HashSet<>();
         }
+        //Não há nada no arquivo, criar um novo conjunto
+        return new HashSet<>();
     }
 
     public boolean salvar(Supermercado supermercado) {
-//        return supermercados.add(supermercado);
+        Set<Supermercado> supermercados = getSupermercados();
+        if(supermercados.add(supermercado)){
+            try{
+                FileOutputStream outputStream = new FileOutputStream(arquivo);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+                objectOutputStream.writeObject(supermercados);
+                return true;
+            } catch (FileNotFoundException e) {
+                System.out.println("Arquivo não encontrado");
+            } catch (IOException e) {
+                System.out.println("Falha ao escrever no arquivo");
+            }
+        }
         return false;
     }
 

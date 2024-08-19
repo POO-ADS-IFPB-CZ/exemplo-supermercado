@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         SupermercadoDao supermercadoDao = new SupermercadoDao();
+        System.out.println(supermercadoDao.getSupermercados());
 
     }
 }
