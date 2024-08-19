@@ -34,6 +34,7 @@ public class SupermercadoDao {
             } catch (FileNotFoundException e) {
                 System.out.println("Arquivo não encontrado");
             } catch (IOException e) {
+                System.out.println(e);
                 System.out.println("Falha ao ler arquivo");
             } catch (ClassNotFoundException e) {
                 System.out.println("Falha ao ler arquivo");

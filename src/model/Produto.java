@@ -5,11 +5,13 @@ import java.util.Objects;
 
 public class Produto implements Serializable {
 
+    private long serialVersionUID;
     private int codigo;
     private String descricao;
     private float preco;
 
     public Produto(int codigo, String descricao, float preco) {
+        serialVersionUID = 1L;
         this.codigo = codigo;
         this.descricao = descricao;
         this.preco = preco;

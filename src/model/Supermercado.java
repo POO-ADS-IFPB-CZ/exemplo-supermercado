@@ -2,16 +2,19 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Supermercado implements Serializable {
 
+    private long serialVersionUID;
     private String cnpj;
     private String nome;
     private Set<Produto> produtos;
     private Set<Cliente> clientes;
 
     public Supermercado(String cnpj, String nome) {
+        serialVersionUID = 1L;
         this.cnpj = cnpj;
         this.nome = nome;
         this.produtos = new HashSet<>();
@@ -74,5 +77,18 @@ public class Supermercado implements Serializable {
                 ", produtos=" + produtos +
                 ", clientes=" + clientes +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Supermercado that = (Supermercado) o;
+        return Objects.equals(cnpj, that.cnpj);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(cnpj);
     }
 }

@@ -5,12 +5,14 @@ import java.util.Objects;
 
 public class Cliente implements Serializable {
 
+    private long serialVersionUID;
     private String cpf;
     private String nome;
     private String telefone;
     private String email;
 
     public Cliente(String cpf, String nome, String telefone, String email) {
+        serialVersionUID = 1L;
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
