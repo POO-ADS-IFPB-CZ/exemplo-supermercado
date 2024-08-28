@@ -29,9 +29,10 @@ public class Main {
 //        }
 
         String profissoes[] = {"Professor", "Técnico Administrativo", "Terceirizado"};
-        JOptionPane.showOptionDialog(null,"Minha mensagem",
+        int retorno = JOptionPane.showOptionDialog(null,"Minha mensagem",
                 "Título da mensagem", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, profissoes, profissoes[0]);
+        System.out.println(retorno);
 
     }
 }
