@@ -36,6 +36,7 @@ public class TelaPrincipal extends JFrame {
                 if(dao.salvar(supermercado)){
                     JOptionPane.showMessageDialog(contentPane,
                             "Salvo com sucessso");
+                    limparFormulario();
                 }else{
                     JOptionPane.showMessageDialog(contentPane,
                             "Já existe supermercado com esse CNPJ",
@@ -73,6 +74,7 @@ public class TelaPrincipal extends JFrame {
                 if(dao.deletar(supermercado)){
                     JOptionPane.showMessageDialog(contentPane,
                             "Deletado com sucessso");
+                    limparFormulario();
                 }else{
                     JOptionPane.showMessageDialog(contentPane,
                             "Falha ao deletar",
@@ -82,6 +84,18 @@ public class TelaPrincipal extends JFrame {
 
             }
         });
+        clientesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaCadastroCliente cadastroCliente = new TelaCadastroCliente();
+                cadastroCliente.setVisible(true);
+            }
+        });
+    }
+
+    private void limparFormulario(){
+        textField1.setText("");
+        formattedTextField1.setText("");
     }
 
     public static void main(String[] args) {
