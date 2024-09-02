@@ -63,6 +63,25 @@ public class TelaPrincipal extends JFrame {
 
             }
         });
+        buttonCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String cnpj = formattedTextField1.getText();
+                String nome = textField1.getText();
+                Supermercado supermercado = new Supermercado(cnpj, nome);
+
+                if(dao.deletar(supermercado)){
+                    JOptionPane.showMessageDialog(contentPane,
+                            "Deletado com sucessso");
+                }else{
+                    JOptionPane.showMessageDialog(contentPane,
+                            "Falha ao deletar",
+                            "Mensagem de erro",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        });
     }
 
     public static void main(String[] args) {
