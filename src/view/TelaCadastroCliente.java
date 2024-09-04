@@ -5,6 +5,8 @@ import model.Supermercado;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +24,14 @@ public class TelaCadastroCliente extends JDialog {
         setModal(true);
         pack();
         getRootPane().setDefaultButton(buttonOK);
+        buttonOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaAdicionarCliente telaAdicionarCliente =
+                        new TelaAdicionarCliente(supermercado);
+                telaAdicionarCliente.setVisible(true);
+            }
+        });
     }
 
     private void createUIComponents() {
