@@ -87,8 +87,19 @@ public class TelaPrincipal extends JFrame {
         clientesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TelaCadastroCliente cadastroCliente = new TelaCadastroCliente();
-                cadastroCliente.setVisible(true);
+                String cnpj = formattedTextField1.getText();
+                Supermercado supermercado = dao.buscarPorCnpj(cnpj);
+                if(supermercado != null){
+                    TelaCadastroCliente cadastroCliente = new TelaCadastroCliente(supermercado);
+                    cadastroCliente.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(contentPane,
+                            "Supermercado não encontrado",
+                            "Mensagem de erro",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+
             }
         });
     }
