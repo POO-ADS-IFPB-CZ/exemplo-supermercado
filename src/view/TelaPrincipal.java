@@ -98,8 +98,6 @@ public class TelaPrincipal extends JFrame {
                             "Mensagem de erro",
                             JOptionPane.ERROR_MESSAGE);
                 }
-
-
             }
         });
     }

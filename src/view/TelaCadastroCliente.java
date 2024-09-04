@@ -1,5 +1,6 @@
 package view;
 
+import dao.SupermercadoDao;
 import model.Cliente;
 import model.Supermercado;
 
@@ -7,6 +8,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +20,7 @@ public class TelaCadastroCliente extends JDialog {
     private JTable table1;
     private JButton atualizarButton;
     private Supermercado supermercado;
+    private SupermercadoDao dao;
 
     public TelaCadastroCliente(Supermercado supermercado) {
         this.supermercado = supermercado;
@@ -32,6 +36,45 @@ public class TelaCadastroCliente extends JDialog {
                 telaAdicionarCliente.setVisible(true);
             }
         });
+
+        addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+                preencherTabela();
+                pack();
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
+
     }
 
     private void createUIComponents() {
@@ -41,6 +84,10 @@ public class TelaCadastroCliente extends JDialog {
 
     private void preencherTabela() {
         //TODO: Melhorar o código com lambda e stream
+        String cnpj = supermercado.getCnpj();
+        dao = new SupermercadoDao();
+        supermercado = dao.buscarPorCnpj(cnpj);
+
         String titulos[] = {"CPF", "Nome", "Telefone", "Email"};
         Set<Cliente> clientes = supermercado.getClientes();
         List<Cliente> clienteList = clientes.stream().toList();
